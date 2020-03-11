@@ -1,0 +1,7 @@
+Options -indexes
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^([a-zA-Z]+)$ index.php?language=$1 [L]

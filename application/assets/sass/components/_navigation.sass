@@ -12,17 +12,40 @@
             display: inline-block
             margin-left: 150px
             .menu-item
+                &.dropdown.open > .menu-dropdown-items
+                    display: block
+                    visibility: visible
                 display: inline-block
                 vertical-align: middle
                 margin-right: 10px
                 margin-left: 10px
                 .menu-dropdown-items
+                    &:before
+                        content: ''
+                        border-color: transparent transparent #fff transparent
+                        border-width: 10px
+                        border-style: solid
+                        position: absolute
+                        left: 50%
+                        margin-top: -30px
+                        top: 10px
+                        margin-left: -15px
+                    display: none
+                    visibility: hidden
                     position: absolute
                     background-color: #fff
                     width: 200px
                     margin-top: 20px
-                    margin-left: 10px
+                    margin-left: -50px
                     border-radius: 5px
+                    padding: 10px
+                    text-align: center
+                    li
+                        padding: 10px
+                        a
+                            color: #000
+                            font-family: sans-serif
+                            font-weight: bold
                 a
                     color: #ffffff
                     font-family: 'Baloo'
