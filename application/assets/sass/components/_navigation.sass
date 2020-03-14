@@ -1,6 +1,7 @@
 .navigation
         padding-top: 30px
         margin-left: 25%
+        color: #fff
         .page-title 
             display: inline-block
             vertical-align: middle
@@ -41,11 +42,21 @@
                     padding: 10px
                     text-align: center
                     li
+                        &:hover
+                            background-color: #FFF5FF
+                            border-radius: 5px
+                            cursor: pointer
+                            box-shadow: 2px 2px 11px rgba(255, 111, 145, 0.25)
+                            > a
+                                color: #FF6F91
+                        transition: background-color 500ms ease-in-out
                         padding: 10px
                         a
                             color: #000
+                            display: block
                             font-family: sans-serif
                             font-weight: bold
+                            text-transform: lowercase
                 a
                     color: #ffffff
                     font-family: 'Baloo'
