@@ -1,5 +1,7 @@
 <?php
     /**
+     * @package Language Controller
+     * 
      * @author Yuu Hirokabe
      * @version 1.0.0
      * @copyright www.yuuhiroka.be 2020
@@ -77,7 +79,7 @@
          * 
          * @return array
          */
-        public static function test2(){
+        public static function get_translate(){
             return self::$translate;
         }
     }
