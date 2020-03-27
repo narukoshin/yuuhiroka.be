@@ -27,6 +27,8 @@
         $this->get('/', 'admin@index');
         // Admin login auth
         $this->post('/login', 'admin@login');
+        // Admin dashboard
+        $this->get('/dashboard', 'admin@dashboard');
     });
 
     // 404 page
