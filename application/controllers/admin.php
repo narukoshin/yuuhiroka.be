@@ -1,13 +1,16 @@
 <?php
     /**
+     * @package Admin Controller
+     * 
      * @author Yuu Hirokabe
      * @version 1.0.0
-     * @copyright yuuhiroka.be 2020
+     * @copyright www.yuuhiroka.be 2020
      */
     class admin extends controller{
         /**
          * Admin page view
          * 
+         * @method GET
          * @return void
          */
         public static function index(){
@@ -19,7 +22,32 @@
         /**
          * Admin login auth
          * 
+         * @method POST
          * @return void
          */
-        public static function login(){}
+        public static function login(){
+            // Making auth
+            self::make_auth();
+            return self::index();
+        }
+        /**
+         * Making auth
+         * 
+         * @return void
+         */
+        private static function make_auth(){
+            $body        = (object)app('request')->body;
+            $username    = $body->username;
+            $password    = $body->password;
+
+            echo $password;
+        }
+        /**
+         * Dashboard
+         * 
+         * @return void
+         */
+        public function dashboard(){
+            return self::index();
+        }
     }
