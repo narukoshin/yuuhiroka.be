@@ -8,4 +8,20 @@ $(document).ready(function(){
         $('li').removeClass('open')
         $(this).addClass('open')
     })
+    // #contact send message
+    $('form.contact_form').on('submit', function(){
+        $.ajax('send-message', {
+            type:'post',
+            dataType:'application/json',
+            data:$(this).serialize()
+        }).done(function(response){
+            var response = JSON.parse(response)
+            if (response.error) {}
+            else {
+                console.log('done...')
+            }
+        }).fail(function(){
+
+        })
+    })
 })

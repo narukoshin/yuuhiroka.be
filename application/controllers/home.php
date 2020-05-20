@@ -16,12 +16,19 @@
          */
         private static $current_lang;
         /**
+         * Storing database connection
+         * 
+         * @var object \Database
+         */
+        private static $db;
+        /**
          * Construction function
          * 
          * @return void
          */
         public function __construct(){
             self::$current_lang = language::current();
+            static::$db         = database::getConnection();
         }
         /**
          * Default viewing Home
@@ -77,5 +84,52 @@
         public static function lang_ru(){
             language::ru();
             return self::index('ru');
+        }
+        /**
+         * Receive message from #contact and store in databae
+         * 
+         * @method POST
+         * @return json
+         */
+        public static function send_message(){
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') exit;
+            $data = (object)[
+                'name'      => $_POST['name'] ?? null,
+                'email'     => $_POST['email'] ?? null,
+                'message'   => $_POST['message'] ?? null,
+            ];
+            $check_for_null = function () use ($data) {
+                foreach ($data as $key => $value){
+                    if (empty($value))
+                        return false;
+                } return true;
+            };
+            if ($check_for_null()){
+                $stmt = static::$db->prepare('
+                    INSERT INTO `messages` (
+                        `name`,
+                        `email`,
+                        `message`
+                    ) VALUES (
+                        :name,
+                        :email,
+                        :message
+                    );
+                ');
+                $stmt->execute([
+                    ':name' => $data->name,
+                    ':email' => $data->email,
+                    ':message' => $data->message
+                ]);
+                echo json_encode([
+                    'error'     => false,
+                    'message'   => ''
+                ]);
+            } else {
+                echo json_encode([
+                    'error'     => true,
+                    'message'   => ''
+                ]);
+            }
         }
     }

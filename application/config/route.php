@@ -19,6 +19,10 @@
         $this->get('/en', 'home@lang_en'); // English language
         $this->get('/ru', 'home@lang_ru'); // Russian language
         $this->get('/ja', 'home@lang_ja'); // Japanese language
+
+        // Sending #contact message
+        $this->get('/send-message', 'home@send_message');
+        $this->post('/send-message', 'home@send_message');
     });
 
     // Admin page

@@ -21,7 +21,7 @@
     <link rel='alternate' hreflang='ru' href='https://www.yuuhiroka.be/ru'>
     <link rel='alternate' hreflang='ja' href='https://www.yuuhiroka.be/ja'>
     <link rel='icon favicon' type='image/x-icon' href='favicon.ico'>
-    <link rel='stylesheet' href='application/assets/css/global.min.css?v=20'>
+    <link rel='stylesheet' href='application/assets/css/global.min.css?v=21'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Baloo&display=swap'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans&display=swap'>
 </head>
@@ -31,8 +31,8 @@
             <div class='page-title'><a href='#'>yuuhiroka.be</a></div>
             <ul class='menu-items'>
                 <li class='menu-item'><a href='#home' lang='{site.lang}'>{nav.home}</a></li>
-                <li class='menu-item'><a href='#about-me'>{nav.about}</a></li>
-                <li class='menu-item'><a href='#'>{nav.contact}</a></li>
+                <li class='menu-item'><a href='#about-me' lang='{site.lang}'>{nav.about}</a></li>
+                <li class='menu-item'><a href='#contact' lang='{site.lang}'>{nav.contact}</a></li>
                 <li class='menu-item dropdown'>
                     <a href='javascript:'><span>{nav.language}</span><i class="fas fa-angle-down" style='margin-left:5px;position:relative;top:1px'></i></a>
                     <ul class='menu-dropdown-items'>
@@ -50,11 +50,11 @@
             <div id='welcome'>{profile.name}</div>
             <div id='job'>{profile.job}</div>
             <ul id='social'>
-                <li><a target='_blank' rel='noopener' href='https://www.facebook.com/yuuhirokabe'><i class="fab fa-facebook-square"></i></a></li>
-                <li><a target='_blank' rel='noopener' href='https://www.instagram.com/yuuhirokabe_official'><i class="fab fa-instagram-square"></i></li>
-                <li><a target='_blank' rel='noopener' href='https://www.github.com/yuuhirokabe'><i class="fab fa-github-square"></a></i></li>
-                <li><a target='_blank' rel='noopener' href='https://www.twitter.com/yuuhirokabe'><i class="fab fa-twitter-square"></a></i></li>
-                <li><a target='_blank' rel='noopener' href='https://www.youtube.com/channel/UCS0xt07QbfG4r9zu71Bd63Q?view_as=subscriber'><i class="fab fa-youtube-square"></a></i></li>
+                <li><a target='_blank' rel='noopener' href='https://social.yuuhiroka.be/facebook'><i class="fab fa-facebook-square"></i></a></li>
+                <li><a target='_blank' rel='noopener' href='https://social.yuuhiroka.be/instagram'><i class="fab fa-instagram-square"></i></li>
+                <li><a target='_blank' rel='noopener' href='https://social.yuuhiroka.be/github'><i class="fab fa-github-square"></a></i></li>
+                <li><a target='_blank' rel='noopener' href='https://social.yuuhiroka.be/twitter'><i class="fab fa-twitter-square"></a></i></li>
+                <li><a target='_blank' rel='noopener' href='https://social.yuuhiroka.be/youtube'><i class="fab fa-youtube-square"></a></i></li>
             </ul>
         </div>
         <div class='mouse-wheel'>
@@ -71,9 +71,22 @@
         </div>
     </section>
     <section id='contact'>
-        <style>section#contact{background-color:#270209;color:#fff5f7;text-align:center;font-family:'open sans';font-weight:700;text-transform:uppercase}section#contact .section-title{text-align:center;color:#fff5f7;margin-top:5%;font-weight:700;font-size:23pt;text-transform:uppercase}</style>
-        <h2 class='section-title'>Contact us</h2>
-        <small>Nothing here yet!</small>
+        <h2 class='section-title'>{contact_me.title}</h2>
+        <form method='post' class='contact_form' spellcheck='false'>
+            <label for='contact_name'>
+                <div class='contact_form_label'>{contact_me.name}</div>
+                <input type='text' id='contact_name' name='name' pattern='[a-zA-Z\W]+'>
+            </label>
+            <label for='contact_email'>
+                <div class='contact_form_label'>{contact_me.email}</div>
+                <input type='email' id='contact_email' name='email'>
+            </label>
+            <label for='contact_message'>
+                <div class='contact_form_label'>{contact_me.message}</div>
+                <textarea type='text' id='contact_message' name='message'></textarea>
+            </label>
+            <button>{contact_me.send}</button>
+        </form>
     </section>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115524892-3"></script>
     <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-115524892-3");</script>
