@@ -107,10 +107,16 @@
             $check_for_null = function () use ($data) {
                 foreach ($data as $key => $value){
                     if (empty($value))
-                        return false;
-                } return true;
+                        return false;}
+                return true;
             };
             if ($check_for_null()){
+                /**
+                 * Testing section
+                 */
+                static::test_name($data->name);
+                static::test_email($data->email);
+                /*****/
                 $stmt = static::$db->prepare('
                     INSERT INTO `messages` (
                         `name`,
@@ -120,7 +126,7 @@
                         :name,
                         :email,
                         :message
-                    );
+                    )
                 ');
                 $stmt->execute([
                     ':name' => $data->name,
@@ -129,13 +135,54 @@
                 ]);
                 echo json_encode([
                     'error'     => false,
-                    'message'   => ''
+                    'message'   => 'Message successfuly saved...'
                 ]);
             } else {
+                /**
+                 * If one of field was empty
+                 */
                 echo json_encode([
                     'error'     => true,
-                    'message'   => ''
+                    'message'   => 'One or more fields are empty!'
                 ]);
+                exit;
             }
+        }
+        /**
+         * Testing email
+         * 
+         * @param string    $email Email from #contact_form
+         * @return json|void
+         */
+        private static function test_email($email){
+            /**
+             * Testing, if email pattern is correct
+             */
+           if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+               /**
+                * Testing, if email domain exists
+                */
+                $domain = explode('@', $email)[1];
+                $content = @file_get_contents('http://'.$domain) ? true:false;
+                if (!$content){
+                    /**
+                     * If email domain don't exists
+                     */
+                    echo json_encode([
+                        'error' => true,
+                        'message' => 'Email domain is incorrect.'    
+                    ]);
+                    exit;
+                }
+           } else {
+               /**
+                * If email pattern is invalid
+                */
+                echo json_encode([
+                    'error' => true,
+                    'message' => 'Email is incorrect.'    
+                ]);
+                exit;
+           }
         }
     }
