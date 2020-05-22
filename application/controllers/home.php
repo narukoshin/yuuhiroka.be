@@ -93,11 +93,17 @@
          */
         public static function send_message(){
             if ($_SERVER['REQUEST_METHOD'] == 'GET') exit;
+            /**
+             * Storing POST to Objected array
+             */
             $data = (object)[
                 'name'      => $_POST['name'] ?? null,
                 'email'     => $_POST['email'] ?? null,
                 'message'   => $_POST['message'] ?? null,
             ];
+            /**
+             * Checking, if fields aren't empty
+             */
             $check_for_null = function () use ($data) {
                 foreach ($data as $key => $value){
                     if (empty($value))
