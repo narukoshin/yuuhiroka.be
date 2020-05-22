@@ -185,4 +185,13 @@
                 exit;
            }
         }
+        /**
+         * Testing name
+         * 
+         * @param string $name  Name from #contact_form
+         * @return json|void
+         */
+        private static function test_name($name){
+            // Code here...
+        }
     }
