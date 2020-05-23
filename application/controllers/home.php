@@ -170,7 +170,7 @@
                      */
                     echo json_encode([
                         'error' => true,
-                        'message' => 'Email domain is incorrect.'    
+                        'message' => 'Email domain is not available.'    
                     ]);
                     exit;
                 }
@@ -188,7 +188,7 @@
         /**
          * Testing name
          * 
-         * @param string $name  Name from #contact_form
+         * @param string    $name Name from #contact_form
          * @return json|void
          */
         private static function test_name($name){
