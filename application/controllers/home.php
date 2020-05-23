@@ -129,7 +129,7 @@
                     )
                 ');
                 $stmt->execute([
-                    ':name' => $data->name,
+                    ':name' => trim($data->name),
                     ':email' => $data->email,
                     ':message' => $data->message
                 ]);
