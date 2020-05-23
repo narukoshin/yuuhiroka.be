@@ -192,6 +192,19 @@
          * @return json|void
          */
         private static function test_name($name){
-            // Code here...
+            /**
+             * Testing if name pattern is correct
+             */
+            preg_match('/^([a-zA-Z\W]+)$/', $name, $matches);
+            if (!$matches){
+                /**
+                 * If name pattern does not match
+                 */
+                echo json_encode([
+                    'error'     => true,
+                    'message'   => 'name does not match pattern!'
+                ]);
+                exit;
+            }
         }
     }
