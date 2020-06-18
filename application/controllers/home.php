@@ -114,6 +114,7 @@
                 /**
                  * Testing section
                  */
+                static::test_userAgent();
                 static::test_name($data->name);
                 static::test_email($data->email);
                 /*****/
