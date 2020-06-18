@@ -156,7 +156,7 @@
          * @param string    $email Email from #contact_form
          * @return json|void
          */
-        private static function test_email($email){
+        private static function test_email(string $email){
             /**
              * Testing, if email pattern is correct
              */
@@ -193,7 +193,7 @@
          * @param string    $name Name from #contact_form
          * @return json|void
          */
-        private static function test_name($name){
+        private static function test_name(string $name){
             /**
              * Testing if name pattern is correct
              */
