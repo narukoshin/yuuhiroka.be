@@ -16,7 +16,24 @@ $(document).ready(function(){
             dataType:'json',
             data:$(this).serialize()
         }).done(function(response){
-            console.log(response)
+            // If sending message failed
+            if (response.error == true) {
+                switch(response.element){
+                    // If error is in email input
+                    case 'email':
+                        $('#contact_email').parent().css('border-color', '#fe5362')
+                        break
+                    // if error is in name input
+                    case 'name':
+                        $('#contact_name').parent().css('border-color', '#fe5362')
+                        break
+                    // if error is in message input
+                    case 'message': break
+                }
+            } else {
+                // If sending email was successful
+                $('.contact_form label').css('border-color', '#03a678')
+            }
         }).fail(function(){})
     })
 })
