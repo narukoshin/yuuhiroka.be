@@ -117,6 +117,7 @@
                 static::test_userAgent();
                 static::test_name($data->name);
                 static::test_email($data->email);
+                static::test_message($data->message);
                 /*****/
                 $stmt = static::$db->prepare('
                     INSERT INTO `messages` (
