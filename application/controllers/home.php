@@ -207,4 +207,18 @@
                 exit;
             }
         }
+        /**
+         * Testing message
+         * 
+         * @param string    $message Message from #contact_form
+         * @return json|void
+         */
+        private static function test_message(string $message){}
+        /**
+         * Testing User-Agent
+         * 
+         * 
+         * @return json:void
+         */
+        private static function test_userAgent(){}
     }
