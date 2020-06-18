@@ -129,7 +129,7 @@
                         `name`,
                         `email`,
                         `message`,
-                        `User-Agent`
+                        `user_agent`
                     ) VALUES (
                         :name,
                         :email,
