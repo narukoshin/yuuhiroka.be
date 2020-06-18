@@ -22,6 +22,10 @@
          */
         private static $db;
         /**
+         * @var string User Agent
+         */
+        private static $userAgent;
+        /**
          * Construction function
          * 
          * @return void
@@ -29,6 +33,7 @@
         public function __construct(){
             self::$current_lang = language::current();
             static::$db         = database::getConnection();
+            static::$userAgent  = $_SERVER['HTTP_USER_AGENT'];
         }
         /**
          * Default viewing Home
