@@ -132,13 +132,15 @@
                     ) VALUES (
                         :name,
                         :email,
-                        :message
+                        :message,
+                        :agent
                     )
                 ');
                 $stmt->execute([
                     ':name' => trim($data->name),
                     ':email' => $data->email,
-                    ':message' => $data->message
+                    ':message' => $data->message,
+                    ':agent' => static::$userAgent
                 ]);
                 echo json_encode([
                     'error'     => false,
