@@ -206,6 +206,7 @@
                  */
                 echo json_encode([
                     'error'     => true,
+                    'element'   => 'name',
                     'message'   => 'name does not match pattern!'
                 ]);
                 exit;
