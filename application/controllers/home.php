@@ -172,7 +172,8 @@
                      */
                     echo json_encode([
                         'error' => true,
-                        'message' => 'Email domain is not available.'    
+                        'element' => 'email',
+                        'message' => 'Email domain is not available.'
                     ]);
                     exit;
                 }
@@ -182,6 +183,7 @@
                 */
                 echo json_encode([
                     'error' => true,
+                    'element' => 'email',
                     'message' => 'Email is incorrect.'    
                 ]);
                 exit;
