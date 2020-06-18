@@ -128,7 +128,8 @@
                     INSERT INTO `messages` (
                         `name`,
                         `email`,
-                        `message`
+                        `message`,
+                        `User-Agent`
                     ) VALUES (
                         :name,
                         :email,
