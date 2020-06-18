@@ -230,5 +230,13 @@
          * 
          * @return json:void
          */
-        private static function test_userAgent(){}
+        private static function test_userAgent(){
+            if (empty(static::$userAgent)) {
+                echo json_encode([
+                    'error' => true,
+                    'mesage' => 'No User Agent detected'
+                ]);
+                exit;
+            }
+        }
     }
