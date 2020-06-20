@@ -127,6 +127,7 @@
                 /**
                  * Testing section
                  */
+                static::verify_csrf_token($data->token);
                 static::test_userAgent();
                 static::test_name($data->name);
                 static::test_email($data->email);
