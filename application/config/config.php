@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once __DIR__ . '/autoload.php';
     $lang = new language;
     new database('localhost', 'root', '', 'yuuhiroka.be');
