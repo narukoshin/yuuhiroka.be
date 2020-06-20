@@ -34,6 +34,8 @@
             self::$current_lang = language::current();
             static::$db         = database::getConnection();
             static::$userAgent  = $_SERVER['HTTP_USER_AGENT'];
+            static::$csrf_token = $_SESSION['token'] ?? false;
+
         }
         /**
          * Default viewing Home
