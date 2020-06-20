@@ -112,6 +112,7 @@
                 'name'      => $_POST['name'] ?? null,
                 'email'     => $_POST['email'] ?? null,
                 'message'   => $_POST['message'] ?? null,
+                'token'     => $_POST['csrf'] ?? null,
             ];
             /**
              * Checking, if fields aren't empty
