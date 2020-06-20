@@ -26,6 +26,10 @@
          */
         private static $userAgent;
         /**
+         * @var string CSRF token
+         */
+        private static $csrf_token;
+        /**
          * Construction function
          * 
          * @return void
