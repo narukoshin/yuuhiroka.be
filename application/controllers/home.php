@@ -245,4 +245,37 @@
                 exit;
             }
         }
+        /**
+         * Generates csrf token and saves in session
+         * 
+         * @return string   MD5 token
+         */
+        private static function generate_csrf_token(){
+            $token = md5(time().'www.yuuhiroka.be');
+            $_SESSION['token'] = $token;
+            return $token;
+        }
+        /**
+         * Verify CSRF token from input with session
+         * 
+         * @param string $token  MD5 token
+         * @return void
+         */
+        private static function verify_csrf_token(string $token){
+            if (!static::$csrf_token) {
+                echo json_encode([
+                    'error'     => true,
+                    'message'   => 'No CSRF Token'
+                ]);
+                exit;
+            } else {
+                if (!static::$csrf_token == $token){
+                    echo json_encode([
+                        'error'     => true,
+                        'message'   => 'CSRF Token does not match'
+                    ]);
+                    exit;
+                }
+            }
+        }
     }
