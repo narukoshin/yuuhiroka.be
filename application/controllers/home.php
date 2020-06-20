@@ -54,6 +54,7 @@
                 $view = str_replace($key, $val, $view);
             }
             $view = str_replace('{site.lang}', $lang, $view);
+            $view = str_replace('{csrf_token}', static::generate_csrf_token(), $view);
             echo $view;
         }
         /**
