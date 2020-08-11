@@ -109,9 +109,9 @@
              * Storing POST to Objected array
              */
             $data = (object)[
-                'name'      => $_POST['name'] ?? null,
-                'email'     => $_POST['email'] ?? null,
-                'message'   => $_POST['message'] ?? null,
+                'name'      => htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8') ?? null,
+                'email'     => htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8') ?? null,
+                'message'   => htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8') ?? null,
                 'token'     => $_POST['csrf'] ?? null,
             ];
             /**
