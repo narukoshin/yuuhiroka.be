@@ -30,8 +30,8 @@ $(document).ready(function(){
                     // if error is in message input
                     case 'message': break
                 }
+            // If sending email was successful
             } else {
-                // If sending email was successful
                 $('.contact_form label').css('border-color', '#03a678')
             }
         }).fail(function(){})
