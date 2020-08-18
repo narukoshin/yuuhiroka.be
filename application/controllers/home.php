@@ -185,7 +185,7 @@
                 * Testing, if email domain exists
                 */
                 $domain = explode('@', $email)[1];
-                $content = @file_get_contents('http://'.$domain) ? true:false;
+                $content = @filter_var(gethostbyname($domain), FILTER_VALIDATE_IP);
                 if (!$content){
                     /**
                      * If email domain don't exists
