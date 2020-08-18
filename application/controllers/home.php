@@ -238,7 +238,16 @@
          * @param string    $message Message from #contact_form
          * @return json|void
          */
-        private static function test_message(string $message){}
+        private static function test_message(string $message){
+            if (strlen($message) >= 500){
+                echo json_encode([
+                    'error' => true,
+                    'element' => 'message',
+                    'message' => 'message is too long, max. 500 characters allowed'
+                ]);
+                exit;
+            }
+        }
         /**
          * Testing User-Agent
          * 
