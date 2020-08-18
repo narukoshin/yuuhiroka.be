@@ -76,17 +76,17 @@
         <form method='post' class='contact_form' spellcheck='false'>
             <label for='contact_name'>
                 <div class='contact_form_label'>{contact_me.name}</div>
-                <input type='text' id='contact_name' name='name' pattern='[a-zA-Z\W]+'>
+                <input type='text' id='contact_name' name='name' pattern='[a-zA-Z\W]+' required>
             </label>
             <label for='contact_email'>
                 <div class='contact_form_label'>{contact_me.email}</div>
-                <input type='email' id='contact_email' name='email'>
+                <input type='email' id='contact_email' name='email' required>
             </label>
             <label for='contact_message'>
                 <div class='contact_form_label'>{contact_me.message}</div>
-                <textarea type='text' id='contact_message' name='message'></textarea>
+                <textarea type='text' id='contact_message' name='message' minlength='0' maxlength='500' required></textarea>
             </label>
-            <button>{contact_me.send}</button>
+            <button disabled>{contact_me.send}</button>
             <input type='hidden' name='csrf' value='{csrf_token}'>
         </form>
     </section>
