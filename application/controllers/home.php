@@ -138,19 +138,22 @@
                         `name`,
                         `email`,
                         `message`,
-                        `user_agent`
+                        `user_agent`,
+                        `ip_address`
                     ) VALUES (
                         :name,
                         :email,
                         :message,
-                        :agent
+                        :agent,
+                        :ip
                     )
                 ');
                 $stmt->execute([
                     ':name' => trim($data->name),
                     ':email' => $data->email,
                     ':message' => $data->message,
-                    ':agent' => static::$userAgent
+                    ':agent' => static::$userAgent,
+                    ':ip' => @filter_var($_SERVER['HTTP_CF_CONNECTING_IP'], FILTER_VALIDATE_IP)
                 ]);
                 echo json_encode([
                     'error'     => false,
