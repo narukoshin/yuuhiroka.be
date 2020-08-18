@@ -30,7 +30,10 @@ $(document).ready(function(){
                         alert(response.message)
                         break
                     // if error is in message input
-                    case 'message': break
+                    case 'message':
+                        $('#contact_message').parent().css('border-color', '#fe5362')    
+                        alert(response.message)
+                        break
                 }
             // If sending email was successful
             } else {
