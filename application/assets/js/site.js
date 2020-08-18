@@ -22,10 +22,12 @@ $(document).ready(function(){
                     // If error is in email input
                     case 'email':
                         $('#contact_email').parent().css('border-color', '#fe5362')
+                        alert(response.message)
                         break
                     // if error is in name input
                     case 'name':
                         $('#contact_name').parent().css('border-color', '#fe5362')
+                        alert(response.message)
                         break
                     // if error is in message input
                     case 'message': break
