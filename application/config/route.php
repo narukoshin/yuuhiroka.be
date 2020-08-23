@@ -30,9 +30,10 @@
         // Admin login
         $this->get('/', 'admin@index');
         // Admin login auth
-        $this->post('/login', 'admin@login');
+        $this->any('/login', 'admin@login');
         // Admin dashboard
         $this->get('/dashboard', 'admin@dashboard');
+        $this->get(['/logout', '/logout/{token}'], 'admin@logout');
     });
 
     // 404 page
