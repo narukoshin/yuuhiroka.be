@@ -21,4 +21,21 @@
         public static function replace(){
             // code here
         }
+        /**
+         * @static
+         * Redirect function
+         * 
+         * @param string $url   Redirection page
+         * @param bool $local   Local redirect or to another website
+         * @return void
+         */
+        public function redirect(string $url, bool $local = true){
+            if ($local){
+                header('Location: ' . config::get()->site_url . '/' . $url);
+                exit;
+            } else {
+                header('Location: ' . $url);
+                exit;
+            }
+        }
     }
