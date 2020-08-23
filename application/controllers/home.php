@@ -54,11 +54,11 @@
             $view = __DIR__ . '/../views/home.html';
             if(!file_exists($view)){echo json_encode(['error' => 'file in views not found!']);exit;}
             $view = file_get_contents($view);
-            foreach(language::get_translate()[$lang] as $key => $val){
-                $view = str_replace($key, $val, $view);
-            }
-            $view = str_replace('{site.lang}', $lang, $view);
-            $view = str_replace('{csrf_token}', static::generate_csrf_token(), $view);
+            $view = strtr($view, language::get_translate()[$lang]);
+            $view = strtr($view, [
+                '{site.lang}'   => $lang,
+                '{csrf_token}'  => static::generate_csrf_token()
+            ]);
             echo $view;
         }
         /**
@@ -165,7 +165,7 @@
                  */
                 echo json_encode([
                     'error'     => true,
-                    'message'   => 'One or more fields are empty!'
+                    'element'   => 'one-or-more-fields'
                 ]);
                 exit;
             }
