@@ -34,6 +34,25 @@ $(document).ready(function(){
                         $('#contact_message').parent().css('border-color', '#fe5362')    
                         alert(response.message)
                         break
+                    // if one or more fields are empty
+                    case 'one-or-more-fields':
+                        let name    = ($('#contact_name').val().length      == 0) ? true : false
+                        let email   = ($('#contact_email').val().length     == 0) ? true : false
+                        let message = ($('#contact_message').val().length   == 0) ? true : false
+                        if (name){
+                            $('#contact_name').parent().css('border-color', '#fe5362')
+                            alert('Please fill name field!')}
+                        else if (email){
+                            $('#contact_email').parent().css('border-color', '#fe5362')
+                            alert('Please fill email field!')}
+                        else if (message){
+                            $('#contact_message').parent().css('border-color', '#fe5362')
+                            alert('Please fill message field!')}
+                        break
+                    default:
+                        $('.contact_form label').css('border-color', '#fe5362')
+                        alert(response.message)
+                        break
                 }
             // If sending email was successful
             } else {
