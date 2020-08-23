@@ -151,7 +151,70 @@
          * 
          * @return void
          */
-        public function dashboard(){
-            return self::index();
+        private static function createSession(object $db, string $username, string $password, int $time){
+            /**
+             * Creating user session unique hash
+             */
+            $hash       = hash('sha256', $password.$time);
+            /**
+             * Session expire date
+             */
+            $expires    = time() + 60*60*24*7; // After 7 days
+            $stmt       = $db->prepare('INSERT INTO `sessions` (`username`, `hash`, `auth_date`, `expire_date`, `user_agent`, `ip_address`) VALUES(:username, :hash, :auth_date, :expire_date, :user_agent, :ip_address);');
+            $result     = $stmt->execute([
+                ':username'     => $username,
+                ':hash'         => $hash,
+                ':auth_date'    => $time,
+                ':expire_date'  => $expires,
+                ':user_agent'   => $_SERVER['HTTP_USER_AGENT'],
+                ':ip_address'   => @filter_var($_SERVER['HTTP_CF_CONNECTING_IP'], FILTER_VALIDATE_IP)
+            ]);
+            /**
+             * Creating Session
+             */
+            $_SESSION['session_hash']       = $hash;
+            $_SESSION['session_username']   = $username;
+        }
+        /**
+         * Updates user last logged in time
+         * 
+         * @param object $db    PDO Object
+         * @param int $id   User ID
+         * @return void
+         */
+        private static function updateUserLastLogin(object $db, int $id){
+            $stmt = $db->prepare('UPDATE `accounts` SET `last_logged` = current_timestamp WHERE `id` = ?;');
+            $stmt->execute([$id]);
+        }
+        /**
+         * Logging out authenticated user
+         * 
+         * @param string|null $token Token against CSRF attack
+         * @return void
+         */
+        public static function logout($token = null){
+            // If token exists
+            if ($token){
+                // Checking, if user is logged in
+                $isLogged = static::isUserLogged();
+                if ($isLogged){
+                    // if token match with session token
+                    if ($token == $isLogged->hash){
+                        // Getting database connection
+                        $db     = database::getConnection();
+                        // Deleting session from database
+                        $stmt   = $db->prepare('DELETE FROM `sessions` WHERE `username` = ? AND `hash` = ?;');
+                        $res    = $stmt->execute([$_SESSION['session_username'], $_SESSION['session_hash']]);
+                        // If query was executed successfuly
+                        if ($res){
+                            // Removing sessions
+                            unset($_SESSION['session_username']);
+                            unset($_SESSION['session_hash']);
+                            // Redirect user to login page
+                            return static::redirect('admin');
+                        } else return static::redirect('dashboard');
+                    } else return static::redirect('admin');
+                } else return static::redirect('admin');
+            } else return static::redirect('admin');
         }
     }
