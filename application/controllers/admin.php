@@ -13,10 +13,23 @@
          * @method GET
          * @return void
          */
-        public static function index(){
+        public static function index(array $options = []){
+            /**
+             * Checking if user is logged in, if not, redirecting to login page
+             */
+            if (static::isUserLogged()) return static::redirect('admin/dashboard');
+            /**
+             * Setting error message to null
+             */
+            if (empty($options)) $options = array_merge($options, ['{login.error}' => null]);
+            /**
+             * Setting site url
+             */
+            $options = array_merge($options, ['{site.url}' => config::get()->site_url]);
             $view = __DIR__ . '/../views/admin.html';
             if(!file_exists($view)){echo json_encode(['error' => 'file in views not found!']);exit;}
             $view = file_get_contents($view);
+            $view = strtr($view, $options);
             echo $view;
         }
         /**
