@@ -91,6 +91,64 @@
         /**
          * Dashboard
          * 
+         * @return string
+         */
+        public static function dashboard(){
+            /**
+             * Checking if user is logged in, if not, redirecting to login page
+             */
+            if (!static::isUserLogged()) return static::redirect('admin');
+            $options = [
+                '{user.name}'       => 'yuuhirokabe',
+                '{user.email}'      => 'hello@yuuhiroka.be',
+                '{session.token}'   => $_SESSION['session_hash'], // Token against CSRF attack
+            ];
+            $view = __DIR__ . '/../views/dashboard.html';
+            if(!file_exists($view)){echo json_encode(['error' => 'file in views not found!']);exit;}
+            $view = file_get_contents($view);
+            $view = strtr($view, $options);
+            echo $view;
+        }
+        /**
+         * Checks if user is authorized
+         * 
+         * @return bool
+         */
+        private static function isUserLogged(){
+            /**
+             * Storing Sessions into variable
+             */
+            $hash       = $_SESSION['session_hash']     ?? false;
+            $user       = $_SESSION['session_username'] ?? false;
+            /**
+             * Checking if sessions exists
+             */
+            if ($hash and $user){
+                $db     = database::getConnection();
+                $stmt   = $db->prepare('SELECT `id` FROM `sessions` WHERE `hash` = ? AND `username` = ? LIMIT 1;');
+                $res    = $stmt->execute([$hash, $user]);
+                /**
+                 * If SQL executed successfully
+                 */
+                if ($res){
+                    /**
+                     * Checking, session is in database
+                     */
+                    if ($stmt->rowCount()){
+                        // TODO: Need to check difference between current date and expire date
+                        return (object)['hash' => $hash, 'user' => $user];}
+                    else{return false;}
+                } else {return false;}
+            } else {return false;}
+        }
+        /**
+         * Creates Login Session
+         * 
+         * @param object $db        PDO Object
+         * @param string $username  Username
+         * @param string $password  Password
+         * @param int    $time      Current Time
+         * 
          * @return void
          */
         public function dashboard(){
