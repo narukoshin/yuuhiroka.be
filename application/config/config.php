@@ -1,8 +1,15 @@
 <?php
     session_start();
     require_once __DIR__ . '/autoload.php';
+    config::set(__DIR__ . '/config.json');
+
     $lang = new language;
-    new database('localhost', 'root', '', 'yuuhiroka.be');
+
+    /**
+     * Reading database login information and connecting to database
+     */
+    $db = config::get()->database;
+    new database($db->hostname, $db->username, $db->password, $db->database);
 
     $lang::translate([
         'lv' => [
