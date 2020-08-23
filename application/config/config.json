@@ -1,0 +1,9 @@
+{
+    "site_url": "http://localhost/yuuhiroka.be",
+    "database": {
+        "hostname": "localhost",
+        "username": "root",
+        "password":"",
+        "database":"yuuhiroka.be"
+    }
+}
