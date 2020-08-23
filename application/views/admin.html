@@ -3,99 +3,16 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>YUUHIROKA.BE - Admin Login</title>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Baloo&display=swap'>
+    <title>Admin Login</title>
+    <link rel='stylesheet' href='{site.url}/application/assets/css/global.min.css'>
 </head>
-<body class='admin-login'>
-    <!-- * Es kad taisu dizainu, pašā sākumā izmantoju <style>, lai ātri varētu mainīt kaut kādas lietas.. -->
-    <style>
-        body.admin-login{
-            background-image: url('http://yuuhiroka.be/application/assets/img/bg.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        body.admin-login .page-title{
-            font-family: 'Baloo';
-            color: #ffffff;
-            font-size: 20pt;
-            margin: 50px auto;
-            display: table;
-        }
-        .sign-in{
-            display: table;                 /* Cik gari ir kastes elementi, tik gara ir paša kaste */
-            margin: 1in auto;             /* Centrēšana lapas vidū */
-        }
-        .input-username,
-        .input-password{
-            /* Šeit mēs uztaisām atstarpi */
-            display: block; /* Pretējs display: table, uztaisa viņu pa visu kasti */
-            margin-top: 45px;
-        }
-        label{
-            display: block;
-            color: #fff;
-            font-size: 10pt;
-            margin-left: 35px;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            position: relative;
-            top: -5px;
-        }
-        .sign-in input{
-            /* Šeit mēs sāksim stilizēt pašus inputus */
-            border: unset !important;       /* No sākuma noņem borderi */
-            outline: unset !important;      /* Noņem zilo līniju, kas ir apkārt */
-            padding: 20px;                  /* Uztaisa viņu resnāku */
-            border-radius: 200px;           /* Uztaisa viņu apaļāku */
-            width: 230px;                   /* Uztaisa viņu garāku */     
-            font-size: 12pt                 /* Uzliekam fonta izmēru lielāku */
-        }
-        button.sign-in-button{
-            border: 0;
-            padding: 20px;
-            border-radius: 200px;
-            width: 20%;
-            position: relative;
-            top: 30px;
-            color: #fff;
-            background: linear-gradient(to right, #0094ff, #006cff);
-            cursor: pointer;
-            outline: none;
-
-        }
-        button.sign-in-button:hover{
-            animation: slide 400ms linear forwards;
-        }
-        @keyframes slide {
-            0% {
-                width: 20%
-            }
-            25%{
-              width: 40%;
-            }
-            50%{
-                width: 60%;
-            }
-            75%{
-                width: 80%;
-            }
-            100% {
-                width: 100%;
-            }
-        }
-    </style>
-    <div class='page-title'>yuuhiroka.be</div>
-    <form action='http://localhost/yuuhiroka.be/admin/login' class='sign-in' method='post'>
-        <div class='input-username'>
-            <label for='username'>username</label>
-            <input type='text' name='username' class='input-box'>
-        </div>
-        <div class='input-password'>
-            <label for='password'>password</label>
-            <input type='password' name='password' class='input-box'>
-        </div>
-        <button class='sign-in-button'><i class="fas fa-sign-in-alt"></i></button>
+<body id='admin-login'>
+    <form action='{site.url}/admin/login' class='adminLogin_Form'  method='post' autocomplete='off'>
+        <h2 class='adminLogin_Welcome'>Sign in to ACP</h2>
+        <div class='adminLogin_Error'>{login.error}</div>
+        <input type='text' name='username' class='adminLogin_Field' placeholder='Jack Sparrow' autofocus required>
+        <input type='password' name='password' class='adminLogin_Field' placeholder='••••••••••••••••' required>
+        <button type='submit' class='adminLogin_Btn'>Sign In</button>
     </form>
-    <script src="https://kit.fontawesome.com/e273aff0fd.js" crossorigin="anonymous"></script>
 </body>
 </html>
