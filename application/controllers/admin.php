@@ -39,9 +39,10 @@
          * @return void
          */
         public static function login(){
+            // If REQUEST METHOD is NOT POST, then redirecting user back to login page
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') return static::redirect('admin');
             // Making auth
             self::make_auth();
-            return self::index();
         }
         /**
          * Making auth
