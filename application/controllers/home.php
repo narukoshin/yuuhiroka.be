@@ -153,7 +153,7 @@
                     ':email' => $data->email,
                     ':message' => $data->message,
                     ':agent' => static::$userAgent,
-                    ':ip' => @filter_var($_SERVER['HTTP_CF_CONNECTING_IP'], FILTER_VALIDATE_IP)
+                    ':ip' => static::getUserIP()
                 ]);
                 echo json_encode([
                     'error'     => false,
