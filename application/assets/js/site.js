@@ -8,6 +8,12 @@ $(document).ready(function(){
         $('li').removeClass('open')
         $(this).addClass('open')
     })
+    // Closes navigation dropdown if clicking outside the dropdown
+    $(document).on('click', e => {
+        if ($(e.target).closest(dropdown).length == 0 && dropdown.hasClass('open')){
+            $(dropdown).removeClass('open')
+        }
+    })
     // #contact send message
     $('form.contact_form').on('submit', function(e){
         e.preventDefault()
