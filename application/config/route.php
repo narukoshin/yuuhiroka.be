@@ -34,6 +34,8 @@
         // Admin dashboard
         $this->get('/dashboard', 'admin@dashboard');
         $this->get(['/logout', '/logout/{token}'], 'admin@logout');
+        // If user don't have created password, redirect to page to create password
+        $this->any('/create-password', 'admin@create_password');
     });
 
     // 404 page
