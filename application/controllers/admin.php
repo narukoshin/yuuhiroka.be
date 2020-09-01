@@ -217,4 +217,42 @@
                 } else return static::redirect('admin');
             } else return static::redirect('admin');
         }
+        /**
+         * Update database if user failed to login to admin panel
+         * 
+         * @param object 
+         * @return void
+         */
+        private static function updateUserFailedLogin(object $db, string $username, string $type){
+            $stmt = $db->prepare('INSERT INTO `failed_logins` (`username`, `type`, `user_agent`, `ip_address`) VALUES(:username, :type, :user_agent, :ip_address);');
+            $stmt->execute([
+                ':username'     => $username,
+                ':type'         => $type,
+                ':user_agent'   => $_SERVER['HTTP_USER_AGENT'],
+                ':ip_address'   => static::getUserIP()
+            ]);
+        }
+        /**
+         * Creating login history
+         * 
+         * @param object $db    PDO Object
+         * @param string $username Username
+         * @return void
+         */
+        private static function createLoginHistory(object $db, string $username){
+            $stmt = $db->prepare('INSERT INTO `login_history` (`username`, `user_agent`, `ip_address`) VALUES (:username, :user_agent, :ip_address);');
+            $stmt->execute([
+                ':username'         => $username,
+                ':user_agent'       => $_SERVER['HTTP_USER_AGENT'],
+                ':ip_address'       => static::getUserIP()
+            ]);
+        }
+        /**
+         * if user password is null, redirect to create-password page, to create new passwrod
+         * 
+         * @return void
+         */
+        public function create_password(){
+            return static::index(['{login.error}' => 'Sorry, this function is not available right now.']);
+        }
     }
