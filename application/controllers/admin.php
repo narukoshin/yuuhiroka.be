@@ -65,24 +65,38 @@
                if ($stmt->rowCount()){
                     // Extracting variables from query
                     extract($stmt->fetch());
-                     // Checking, if user entered password match to password in database
-                     // If password is valid
+                    // If user password is null, redirecting user to create new password
+                    if (is_null($password)){
+                        return static::redirect('admin/create-password');
+                    }
+                    // Checking, if user entered password match to password in database
+                    // If password is valid
                     if (password_verify($passwd, $password)){
+                        // If account is locked for security purposes
+                        if ($locked) return static::index(['{login.error}' => 'Sorry, account is locked for security purposes.']);
+
                         // Creates user auth session
                         static::createSession($db, $username, $passwd, time());
 
                         // Updates user last login time
                         static::updateUserLastLogin($db, $id);
 
+                        // Creating login history
+                        static::createLoginHistory($db, $username);
+
                         // Redirecting user to dashboard
                         return static::redirect('admin/dashboard');
                      // If password is invalid
                     } else {
+                        // Insert user failed login into database
+                        static::updateUserFailedLogin($db, $username, 'wrong-password');
                         // Returning login page with invalid password error
                         return self::index(['{login.error}' => 'You entered wrong password, please try again..']);
                     }
                  // If username is invalid
                } else {
+                    // Insert user failed login to database
+                    static::updateUserFailedLogin($db, $username, 'wrong-username');
                     // Returning login page with invalid username error
                     return self::index(['{login.error}' => "Sorry, we can't find account with that username."]);
                }
@@ -97,11 +111,11 @@
             /**
              * Checking if user is logged in, if not, redirecting to login page
              */
-            if (!static::isUserLogged()) return static::redirect('admin');
+            $user = static::isUserLogged();
+            if (!$user) return static::redirect('admin');
             $options = [
-                '{user.name}'       => 'yuuhirokabe',
-                '{user.email}'      => 'hello@yuuhiroka.be',
-                '{session.token}'   => $_SESSION['session_hash'], // Token against CSRF attack
+                '{log.out}'         => config::get()->site_url . '/admin/logout/' . $user->hash,
+                '{site.url}'        => config::get()->site_url
             ];
             $view = __DIR__ . '/../views/dashboard.html';
             if(!file_exists($view)){echo json_encode(['error' => 'file in views not found!']);exit;}
@@ -167,7 +181,7 @@
                 ':auth_date'    => $time,
                 ':expire_date'  => $expires,
                 ':user_agent'   => $_SERVER['HTTP_USER_AGENT'],
-                ':ip_address'   => @filter_var($_SERVER['HTTP_CF_CONNECTING_IP'], FILTER_VALIDATE_IP)
+                ':ip_address'   => static::getUserIP()
             ]);
             /**
              * Creating Session
