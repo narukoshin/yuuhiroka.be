@@ -73,7 +73,6 @@ $(document).ready(function(){
         let $message = $('#contact_message').val().length
         if ($name && $email && $message){ // If all fields are filled in then button is not disabled
             $('button').prop('disabled', false)
-            console.log($message)
         } else { // If all fields are not filled in then button is disabled
             $('button').prop('disabled', true)
         }
