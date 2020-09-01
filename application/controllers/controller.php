@@ -38,4 +38,13 @@
                 exit;
             }
         }
+        /**
+         * @static
+         * Get User IP address
+         * 
+         * @return string
+         */
+        public static function getUserIP(){
+            return @filter_var($_SERVER['HTTP_CF_CONNECTING_IP'], FILTER_VALIDATE_IP);
+        }
     }
