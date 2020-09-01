@@ -56,7 +56,7 @@
             $passwd      = $body->password;
             $db          = Database::getConnection();
             // Sql statament
-            $stmt        = $db->prepare('SELECT `id`, `password`, `email` FROM `accounts` WHERE `username` = ? LIMIT 1;');
+            $stmt        = $db->prepare('SELECT `id`, `password`, `locked` FROM `accounts` WHERE `username` = ? LIMIT 1;');
             // Sending sql statament to server
             $result      = $stmt->execute([$username]);
             // If sql statament was successfuly executed
