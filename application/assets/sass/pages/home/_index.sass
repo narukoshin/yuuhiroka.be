@@ -1,0 +1,128 @@
+section
+    width: 100%
+    height: 100vh
+    overflow: hidden
+
+section#home
+    background-image: url('../img/bg.jpg')
+    background-size: cover
+    background-repeat: no-repeat
+    .introduction
+        display: table
+        margin: 150px auto
+        text-align: center
+        #profile-photo
+            border-radius: 50%
+            width: 200px
+            height: 200px
+            border: 2px solid #ffffff
+        #welcome
+            margin-top: 15px
+            color: #ffffff
+            font-weight: bold
+            font-size: 26pt
+            font-family: Arial, sans-serif
+        #job
+            margin-top: 10px
+            color: #ffffff
+            font-weight: bold
+            font-family: Arial, sans-serif
+    .mouse-wheel
+        position: absolute
+        right: 0
+        left: 0
+        bottom: 10%
+        #mouse
+            width: 31px
+            height: 60px
+            border: 2px solid #ffffff
+            margin: 0 auto
+            align-items: center
+            #wheel
+                width: 5px
+                height: 14px
+                border-radius: 200px
+                background-color: #ffffff
+                margin: 5px auto
+                animation: wheel 1000ms linear infinite
+
+@keyframes wheel
+    100%
+        margin-top: 25px
+
+section#contact
+    background-color: #270209
+    color: #fff5f7
+    text-align: center
+    font-family: 'open sans'
+    font-weight: 700
+    text-transform: uppercase
+    .section-title
+        text-align: center
+        color: #fff5f7
+        margin-top: 5%
+        font-weight: 700
+        font-size: 23pt
+        text-transform: uppercase
+    .contact_form
+        width: 26%
+        margin: 0 auto
+        label
+            background-color: #380611
+            display: table
+            margin: 2rem auto
+            border-radius: 3px
+            border-bottom-right-radius: unset
+            border-bottom-left-radius: unset
+            width: 100%
+            border-bottom: 2px solid
+            .contact_form_label
+                font-weight: normal
+                font-size: 9pt
+                text-align: left
+                margin-left: 10px
+                margin-top: 10px
+                text-transform: lowercase
+                color: #c3c3c3
+                user-select: none
+            input
+                outline: 0
+                border: 0
+                padding: 11px 2rem 10px 10px
+                background: unset
+                color: #fff
+                width: 100%
+            textarea
+                border: unset
+                outline: unset
+                font-family: 'Open sans'
+                font-weight: normal
+                font-size: 9pt
+                width: 100%
+                background: unset
+                resize: vertical
+                min-height: 31px
+                height: 50px
+                color: #fff
+                padding: 11px 2rem 10px 10px
+                overflow: hidden
+        button
+            $color: #e9345c
+            &:hover
+                background-color: darken($color, 30)
+            &[disabled],
+            &:disabled
+                opacity: .5
+                &:hover
+                    background-color: $color
+            border: 0
+            outline: 0
+            background-color: $color
+            color: #fff
+            border-radius: 200px
+            padding: 10px
+            cursor: pointer
+            width: 50%
+            font-size: 12pt
+            font-weight: bold
+            transition: all 500ms ease-in-out

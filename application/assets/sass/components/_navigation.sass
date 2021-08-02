@@ -1,0 +1,74 @@
+.navigation
+        padding-top: 30px
+        margin-left: 25%
+        color: #fff
+        .page-title 
+            display: inline-block
+            vertical-align: middle
+            a
+                color: #ffffff
+                font-family: 'Baloo'
+                font-size: 17pt
+        .menu-items
+            display: inline-block
+            margin-left: 150px
+            .menu-item
+                &.dropdown.open > .menu-dropdown-items
+                    display: block
+                    visibility: visible
+                &.dropdown.open svg
+                    transform: rotate(-180deg)
+                &.dropdown svg
+                    transition: transform 500ms ease-in-out
+                    margin-left: 7px
+                    position: relative
+                    top: 2px
+                display: inline-block
+                vertical-align: middle
+                margin-right: 10px
+                margin-left: 10px
+                .menu-dropdown-items
+                    &:before
+                        content: ''
+                        border-color: transparent transparent #fff transparent
+                        border-width: 10px
+                        border-style: solid
+                        position: absolute
+                        left: 50%
+                        margin-top: -30px
+                        top: 10px
+                        margin-left: -15px
+                    display: none
+                    visibility: hidden
+                    position: absolute
+                    background-color: #fff
+                    width: 200px
+                    margin-top: 20px
+                    margin-left: -50px
+                    border-radius: 5px
+                    padding: 10px
+                    text-align: center
+                    li
+                        &:hover
+                            background-color: #FFF5FF
+                            border-radius: 5px
+                            cursor: pointer
+                            box-shadow: 2px 2px 11px rgba(255, 111, 145, 0.25)
+                            > a
+                                color: #FF6F91
+                        transition: background-color 500ms ease-in-out
+                        a
+                            color: #000
+                            display: block
+                            font-family: sans-serif
+                            font-weight: bold
+                            text-transform: lowercase
+                            padding: 10px
+                a
+                    html[lang="ru"] &,
+                    html[lang="ja"] &
+                        font-family: Arial, Helvetica, sans-serif
+                        font-weight: bold
+                    color: #ffffff
+                    font-family: 'Baloo'
+                    font-size: 11pt

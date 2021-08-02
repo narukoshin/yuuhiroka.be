@@ -1,0 +1,55 @@
+body#admin-login
+    width: 100%
+    height: 100vh
+    background-image: url('../img/login_bg2.jpg')
+    background-repeat: no-repeat
+    background-size: cover
+    transition: background-image 500ms ease-in-out
+    form.adminLogin_Form
+        position: absolute
+        left: 50%
+        transform: translate(-50%, 50%)
+        text-align: center
+        width: 20%
+        h2.adminLogin_Welcome
+            color: #fff
+            font-family: Arial, sans-serif
+            font-weight: bold
+            margin-bottom: 1cm
+        .adminLogin_Error
+            color: #fe3368
+            font-family: Arial, sans-serif
+            margin-bottom: .5cm
+            font-weight: bold
+            font-size: 11pt
+        // Login Input Fields
+        input.adminLogin_Field
+            border: 0
+            width: 100%
+            margin-bottom: 20px
+            padding: 25px
+            border-radius: 3px
+            box-shadow: 0px 5px 20px #929292
+            outline: 0
+            font-weight: bold
+            font-size: 11pt
+        // Login Button
+        button.adminLogin_Btn
+            $color: #fe3368
+            &:hover
+                background-color: #DA004D
+                filter: drop-shadow(0px 0px 40px $color)
+                transform: scale(1.1)
+            background-color: $color
+            font-family: Arial,sans-serif
+            outline: 0
+            border: none
+            color: #ffffff
+            padding: 20px
+            border-radius: 3px
+            width: 70%
+            cursor: pointer
+            transition: background-color 500ms ease-in-out, filter 500ms ease-in-out, transform 500ms ease-in-out
+            font-weight: bold
+            margin-top: 1cm
+            filter: drop-shadow(0px 0px 40px $color)

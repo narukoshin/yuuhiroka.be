@@ -1,0 +1,17 @@
+{
+
+    "site_url": "https://www.yuuhiroka.be",
+
+    "database": {
+
+        "hostname": "localhost",
+
+        "username": "yuuhirok_home",
+
+        "password":"ikyi(NF8yT(JApVglY",
+
+        "database":"yuuhirok_home"
+
+    }
+
+}
